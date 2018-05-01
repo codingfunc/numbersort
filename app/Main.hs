@@ -31,15 +31,3 @@ main = do
         end <- getTime Monotonic
         putStrLn $ "Created " ++ output
         fprint (timeSpecs) start end
-
-
---    writeFile "/tmp/hsorted.random" sorted
-
---test1 :: IO()
---test1 = do
---    args <- getArgs
---    input <- readFile(args !! 0)
---    writeFile "/tmp/hsorted.random" $ unlines itoa $ sort $ atoi $ lines input
-
-
-
