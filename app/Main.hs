@@ -40,10 +40,10 @@ generate args = do
     forM_ n $ hPutStrLn hOutput . show
 
     hFlush hOutput
-    putStrLn $ "Generation of  " <> outputFile <> " is completed."
+    putStrLn $ "Generation of " <> outputFile <> " is completed."
 
 randomNumbers :: IO [Int]
-randomNumbers = randoms <$> newStdGen
+randomNumbers = randomRs (0, 10^9) <$> newStdGen
 
 measure :: String -> (FilePath -> FilePath -> IO ()) -> [String] -> IO ()
 measure title benchmark args = do
@@ -57,7 +57,9 @@ measure title benchmark args = do
 testAha :: FilePath -> FilePath -> IO ()
 testAha inputFile outputFile = do
     input <- readFile inputFile
-    let sorted = itoa . sort . atoi $ lines input
     hOutput <- openFile outputFile WriteMode
+
+    let sorted = itoa . sort . atoi $ lines input
+
     hPutStrLn hOutput $ unlines sorted
     hFlush hOutput
