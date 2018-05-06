@@ -37,7 +37,7 @@ generate args = do
     hOutput <- openFile outputFile WriteMode
 
     n <- take rowCount <$> randomNumbers
-    forM_ n $ hPutStrLn hOutput . show
+    forM_ n $ hPrint hOutput
 
     hFlush hOutput
     putStrLn $ "Generation of " <> outputFile <> " is completed."
@@ -59,7 +59,7 @@ testAha inputFile outputFile = do
     input <- readFile inputFile
     hOutput <- openFile outputFile WriteMode
 
-    let sorted = itoa . sort . atoi $ lines input
+    let sorted = unlines . itoa . sort . atoi . lines $ input
 
-    hPutStrLn hOutput $ unlines sorted
+    hPutStrLn hOutput sorted
     hFlush hOutput
