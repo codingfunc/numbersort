@@ -13,11 +13,11 @@ import System.Environment
 import System.IO
 import System.Random
 
-atoi :: [String] -> [Int]
-atoi = map read
+stringsToNumbers :: [String] -> [Int]
+stringsToNumbers = map read
 
-itoa :: [Int] -> [String]
-itoa = map show
+numbersToStrings :: [Int] -> [String]
+numbersToStrings = map show
 
 main :: IO ()
 main = do
@@ -59,7 +59,7 @@ testAha inputFile outputFile = do
     input <- readFile inputFile
     hOutput <- openFile outputFile WriteMode
 
-    let sorted = unlines . itoa . sort . atoi . lines $ input
+    let sorted = unlines . numbersToStrings . sort . stringsToNumbers . lines $ input
 
     hPutStrLn hOutput sorted
     hFlush hOutput
