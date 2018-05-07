@@ -4,6 +4,7 @@ module Main where
 
 import Control.Exception
 import Control.Monad
+import Data.Function ((&))
 import Data.List
 import Data.Monoid ((<>))
 import Formatting
@@ -26,6 +27,7 @@ main = do
     case operation of
       "generate" -> generate options
       "test-aha" -> measure "test-aha" testAha options
+      "test-sp" -> measure "test-sp" testSP options
       _ -> error "Incorrect operation syntax!"
 
 generate :: [String] -> IO ()
@@ -59,7 +61,17 @@ testAha inputFile outputFile = do
     input <- readFile inputFile
     hOutput <- openFile outputFile WriteMode
 
-    let sorted = unlines . numbersToStrings . sort . stringsToNumbers . lines $ input
+    let sorted = lines input & stringsToNumbers & sort & numbersToStrings & unlines
+
+    hPutStrLn hOutput sorted
+    hFlush hOutput
+
+testSP :: FilePath -> FilePath -> IO ()
+testSP inputFile outputFile = do
+    input <- readFile inputFile
+    hOutput <- openFile outputFile WriteMode
+
+    let sorted = input  -- FIXME TODO implement sorting
 
     hPutStrLn hOutput sorted
     hFlush hOutput
