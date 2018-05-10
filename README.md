@@ -39,7 +39,7 @@ Using a generated text file with 10M random integer numbers, we get these best t
 * Rust (https://github.com/aha0x0x/num_sort): 0.882 sec (time: ```1.85s user 0.22s system 99% cpu 2.063 total```)
 * Java + Oracle JDK 10 (https://github.com/aha0x0x/NumSort): 1.71 sec (time: ```2.24s user 0.14s system 124% cpu 1.920 total```)
 * Haskell (this project), "test-aha" method: 58 sec (time: ```144.03s user 99.27s system 419% cpu 58.010 total```)
-* Haskell (this project), "test-sp" method: 20.8 sec (time: ```44.34s user 14.59s system 280% cpu 21.004 total```)
+* Haskell (this project), "test-sp" method: 6.19 sec (time: ```11.87s user 8.00s system 316% cpu 6.266 total```)
 
 ## Installation
 
