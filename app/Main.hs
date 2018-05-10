@@ -77,7 +77,13 @@ testSP inputFile outputFile = do
     input <- readFile inputFile
     hOutput <- openFile outputFile WriteMode
 
-    let sorted = VU.toList . VU.modify AI.sort . VU.fromList $ input
+    let sortedStrings = lines input
+                      & stringsToNumbers
+                      & VU.fromList
+                      & VU.modify AI.sort
+                      & VU.toList
+                      & numbersToStrings
+                      & unlines
 
-    hPutStrLn hOutput sorted
+    hPutStrLn hOutput sortedStrings
     hFlush hOutput
