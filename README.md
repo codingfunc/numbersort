@@ -3,9 +3,12 @@ This project provides utility code to load a given file containing integers, sor
 
 To compile the project run
 
-```stack build```
+```stack update && stack upgrade && stack setup && stack build```
 
 To run:
 
-```stack exec numsort-exe /tmp/10000000.random```
-
+```
+    $ numbersort-exe generate 1000000 /tmp/input.txt
+    $ numbersort-exe test-aha /tmp/input.txt /tmp/output.txt
+    $ numbersort-exe test-sp /tmp/input.txt /tmp/output.txt
+```

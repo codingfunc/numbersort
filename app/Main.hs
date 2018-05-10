@@ -22,6 +22,12 @@ stringsToNumbers = map read
 numbersToStrings :: [Int] -> [String]
 numbersToStrings = map show
 
+{---
+    USAGE:
+    $ numbersort generate 1000000 /tmp/input.txt
+    $ numbersort test-aha /tmp/input.txt /tmp/output.txt
+    $ numbersort test-sp /tmp/input.txt /tmp/output.txt
+---}
 main :: IO ()
 main = do
     args <- getArgs
