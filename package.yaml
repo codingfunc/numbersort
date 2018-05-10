@@ -28,6 +28,7 @@ dependencies:
 - vector >= 0.12
 - vector-algorithms >= 0.7
 - unboxed-containers >= 0.0.2.4
+- text >= 1.2.3
 
 library:
   source-dirs: src

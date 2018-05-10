@@ -7,6 +7,9 @@ import Control.Monad
 import Data.Function ((&))
 import Data.List
 import Data.Monoid ((<>))
+import qualified Data.Text as T
+import qualified Data.Text.IO as TIO
+import qualified Data.Text.Read as TR
 import qualified Data.Vector.Algorithms.Intro as AI
 import qualified Data.Vector.Unboxed as VU
 import Formatting
@@ -15,12 +18,6 @@ import System.Clock
 import System.Environment
 import System.IO
 import System.Random
-
-stringsToNumbers :: [String] -> [Int]
-stringsToNumbers = map read
-
-numbersToStrings :: [Int] -> [String]
-numbersToStrings = map show
 
 {---
     USAGE:
@@ -67,29 +64,34 @@ measure title benchmark args = do
 testAha :: FilePath -> FilePath -> IO ()
 testAha inputFile outputFile = do
     input <- readFile inputFile
-    hOutput <- openFile outputFile WriteMode
 
     let sortedStrings = lines input
-                      & stringsToNumbers
+                      & map (read::String->Int)
                       & sort
-                      & numbersToStrings
+                      & map show
                       & unlines
 
+    hOutput <- openFile outputFile WriteMode
     hPutStrLn hOutput sortedStrings
     hFlush hOutput
 
 testSP :: FilePath -> FilePath -> IO ()
 testSP inputFile outputFile = do
-    input <- readFile inputFile
-    hOutput <- openFile outputFile WriteMode
+    input <- TIO.readFile inputFile
 
-    let sortedStrings = lines input
-                      & stringsToNumbers
+    let sortedStrings = T.lines input
+                      & map parseInt
                       & VU.fromList
                       & VU.modify AI.sort
                       & VU.toList
-                      & numbersToStrings
-                      & unlines
+                      & map (T.pack . show)
+                      & T.unlines
 
-    hPutStrLn hOutput sortedStrings
+    hOutput <- openFile outputFile WriteMode
+    TIO.hPutStrLn hOutput sortedStrings
     hFlush hOutput
+
+parseInt :: T.Text -> Int
+parseInt t = case TR.decimal t of
+               Right (n, _) -> n
+               Left _       -> -1  -- no real parsing error handling for now
