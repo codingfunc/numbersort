@@ -71,3 +71,4 @@ Here you can find some useful information on Haskell code performance, in detail
 
 * https://www.packtpub.com/application-development/haskell-high-performance-programming
 * https://wiki.haskell.org/Performance
+* https://www.cheatography.com/nash/cheat-sheets/ghc-and-rts-options/
