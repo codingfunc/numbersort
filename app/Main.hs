@@ -7,6 +7,8 @@ import Control.Monad
 import Data.Function ((&))
 import Data.List
 import Data.Monoid ((<>))
+import qualified Data.Vector.Algorithms.Intro as AI
+import qualified Data.Vector.Unboxed as VU
 import Formatting
 import Formatting.Clock
 import System.Clock
@@ -71,7 +73,7 @@ testSP inputFile outputFile = do
     input <- readFile inputFile
     hOutput <- openFile outputFile WriteMode
 
-    let sorted = input  -- FIXME TODO implement sorting
+    let sorted = VU.toList . VU.modify AI.sort . VU.fromList $ input
 
     hPutStrLn hOutput sorted
     hFlush hOutput
