@@ -63,9 +63,13 @@ testAha inputFile outputFile = do
     input <- readFile inputFile
     hOutput <- openFile outputFile WriteMode
 
-    let sorted = lines input & stringsToNumbers & sort & numbersToStrings & unlines
+    let sortedStrings = lines input
+                      & stringsToNumbers
+                      & sort
+                      & numbersToStrings
+                      & unlines
 
-    hPutStrLn hOutput sorted
+    hPutStrLn hOutput sortedStrings
     hFlush hOutput
 
 testSP :: FilePath -> FilePath -> IO ()
