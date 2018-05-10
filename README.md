@@ -15,10 +15,10 @@ This is also turning out to be a good way to improve my Haskell skills by diving
 
 Here are some links to resources pointing that I'm not the only one thinking that Haskell can be pretty performant in the right hands :)
 
-https://wiki.haskell.org/Why_Haskell_matters#The_speed_of_Haskell
-https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/haskell.html
-https://stackoverflow.com/questions/35027952/why-is-haskell-ghc-so-darn-fast
-https://www.quora.com/Is-Haskell-as-fast-as-C++-If-not-why-not
+* https://wiki.haskell.org/Why_Haskell_matters#The_speed_of_Haskell
+* https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/haskell.html
+* https://stackoverflow.com/questions/35027952/why-is-haskell-ghc-so-darn-fast
+* https://www.quora.com/Is-Haskell-as-fast-as-C++-If-not-why-not
 
 In the updated code, ```testAha``` function essentially contains the original code from aha0x0x, just slightly reworded/reformatted.
 The ```testSP``` function contains a faster implementation and is a work in progress.
@@ -30,14 +30,14 @@ but do not measure memory consumption etc.
 Here are the rough and very approximate results
 (which are only good to tell an order of magnitude difference and to get a sense of the overall code performance):
 
-CPU (```lscpu```): Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz
-Disk (```sudo hdparm -I /dev/sda1```): Samsung SSD 850 EVO 250GB
+* CPU (```lscpu```): Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz
+* Disk (```sudo hdparm -I /dev/sda1```): Samsung SSD 850 EVO 250GB
 
 Using a generated text file with 10M random integer numbers, we get these best times:
 
 * C (```sort -n```): (time: ```13.78s user 0.42s system 434% cpu 3.270 total```)
-* Java + Oracle JDK 10 (https://github.com/aha0x0x/NumSort): 1.71 sec (time: ```2.24s user 0.14s system 124% cpu 1.920 total```)
 * Rust (https://github.com/aha0x0x/num_sort): 0.882 sec (time: ```1.85s user 0.22s system 99% cpu 2.063 total```)
+* Java + Oracle JDK 10 (https://github.com/aha0x0x/NumSort): 1.71 sec (time: ```2.24s user 0.14s system 124% cpu 1.920 total```)
 * Haskell (this project), "test-aha" method: 58 sec (time: ```144.03s user 99.27s system 419% cpu 58.010 total```)
 * Haskell (this project), "test-sp" method: 20.8 sec (time: ```44.34s user 14.59s system 280% cpu 21.004 total```)
 
@@ -69,5 +69,5 @@ FIXME TODO add profiling results here...
 
 Here you can find some useful information on Haskell code performance, in detail:
 
-https://www.packtpub.com/application-development/haskell-high-performance-programming
-https://wiki.haskell.org/Performance
+* https://www.packtpub.com/application-development/haskell-high-performance-programming
+* https://wiki.haskell.org/Performance
